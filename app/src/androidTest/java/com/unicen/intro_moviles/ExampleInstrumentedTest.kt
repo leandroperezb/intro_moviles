@@ -1,4 +1,4 @@
-package com.leandro.holamundo
+package com.unicen.intro_moviles
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.leandro.holamundo", appContext.packageName)
+        assertEquals("com.unicen.intro_moviles", appContext.packageName)
     }
 }

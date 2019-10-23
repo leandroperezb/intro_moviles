@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hola Mundo</string>
+    <string name="app_name">Intro Móviles</string>
     <string name="contar">Contar</string>
     <string name="descontar">Descontar</string>
     <string name="mostrar_contador">Contador: %1d</string>
