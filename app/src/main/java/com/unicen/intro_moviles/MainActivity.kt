@@ -21,4 +21,9 @@ class MainActivity : AppCompatActivity() {
         val intent: Intent = Intent(this, CalculadoraActivity::class.java)
         startActivity(intent)
     }
+
+    fun abrirCronometro(view: View){
+        val intent: Intent = Intent(this, CronometroActivity::class.java)
+        startActivity(intent)
+    }
 }
