@@ -3,6 +3,7 @@ package com.unicen.intro_moviles
 import android.app.Service
 import android.content.Intent
 import android.os.*
+import android.support.v4.content.LocalBroadcastManager
 import android.util.Log
 
 class BackgroundService : Service() {
@@ -18,7 +19,10 @@ class BackgroundService : Service() {
             }catch (e: InterruptedException){
                 Thread.currentThread().interrupt()
             }
-            stopSelf(msg!!.arg1)
+            val intent = Intent(ServiciosActivity.BROADCASTNAME)
+            intent.putExtra("numero", msg?.obj as Int +1)
+            LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(intent)
+            stopSelf(msg.arg1)
         }
     }
 
