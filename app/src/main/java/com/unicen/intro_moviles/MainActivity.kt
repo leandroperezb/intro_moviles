@@ -26,4 +26,9 @@ class MainActivity : AppCompatActivity() {
         val intent: Intent = Intent(this, CronometroActivity::class.java)
         startActivity(intent)
     }
+
+    fun abrirServicios(view: View){
+        val intent: Intent = Intent(this, ServiciosActivity::class.java)
+        startActivity(intent)
+    }
 }

@@ -32,5 +32,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/cronometro"
                 android:onClick="abrirCronometro"/>
+        <Button
+                android:id="@+id/servicios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:onClick="abrirServicios" android:text="Servicios"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
