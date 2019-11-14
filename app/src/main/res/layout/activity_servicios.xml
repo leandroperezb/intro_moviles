@@ -15,16 +15,12 @@
         <Button
                 android:id="@+id/intentservice"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:text="Intent Service"/>
+                android:layout_height="wrap_content" android:onClick="intentService" android:text="Intent Service"/>
         <Button
                 android:id="@+id/backgroundservice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:onClick="backgroundService"
                 android:text="Background Service"/>
-        <Button
-                android:id="@+id/stopbackground"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:onClick="stopBackground" android:text="Stop background"/>
         <Button
                 android:id="@+id/boundservice"
                 android:layout_width="match_parent"

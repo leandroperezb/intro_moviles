@@ -49,14 +49,19 @@ class ServiciosActivity : AppCompatActivity() {
         resultado.text = ""
         if (background == null)
             background = Intent(this, BackgroundService::class.java)
-        for (i in 0..9) {
+        for (i in 1..4) {
             background?.putExtra("contenido", i)
             startService(background)
         }
     }
 
-    fun stopBackground(view: View){
-        if (background != null)
-            stopService(background)
+    fun intentService(view: View){
+        resultado.text = ""
+        val myIntentService = Intent(this, MyIntentService::class.java)
+        for (i in 1..4) {
+            myIntentService?.putExtra("contenido", i)
+            startService(myIntentService)
+        }
     }
+
 }
