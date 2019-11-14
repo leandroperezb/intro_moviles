@@ -1,11 +1,9 @@
 package com.unicen.intro_moviles
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
+import android.content.*
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.IBinder
 import android.support.v4.content.LocalBroadcastManager
 import android.view.View
 import kotlinx.android.synthetic.main.activity_servicios.*
@@ -31,14 +29,28 @@ class ServiciosActivity : AppCompatActivity() {
         setContentView(R.layout.activity_servicios)
     }
 
+    var miBoundService: MyBoundService? = null
+
+    val conexion = object: ServiceConnection{
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            miBoundService = (service as MyBoundService.MyBinder).getService()
+        }
+
+        override fun onServiceDisconnected(name: ComponentName?) {
+            miBoundService = null
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         LocalBroadcastManager.getInstance(applicationContext).registerReceiver(recibidor, IntentFilter(BROADCASTNAME))
+        bindService(Intent(this, MyBoundService::class.java), conexion, Context.BIND_AUTO_CREATE)
     }
 
     override fun onPause() {
         super.onPause()
         LocalBroadcastManager.getInstance(applicationContext).unregisterReceiver(recibidor)
+        unbindService(conexion)
     }
 
     val recibidor = RespuestaServicios()
@@ -61,6 +73,13 @@ class ServiciosActivity : AppCompatActivity() {
         for (i in 1..4) {
             myIntentService?.putExtra("contenido", i)
             startService(myIntentService)
+        }
+    }
+
+    fun boundService(view: View){
+        resultado.text = ""
+        if (miBoundService != null){
+            resultado.text = miBoundService!!.getNumber().toString()
         }
     }
 

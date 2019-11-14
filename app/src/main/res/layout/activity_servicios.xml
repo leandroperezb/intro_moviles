@@ -24,7 +24,7 @@
         <Button
                 android:id="@+id/boundservice"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:text="Bound Service"/>
+                android:layout_height="wrap_content" android:onClick="boundService" android:text="Bound Service"/>
         <TextView
                 android:id="@+id/resultado"
                 android:layout_width="match_parent"
