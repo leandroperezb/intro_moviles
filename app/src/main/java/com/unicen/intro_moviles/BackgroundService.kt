@@ -14,13 +14,13 @@ class BackgroundService : Service() {
         override fun handleMessage(msg: Message?) {
             super.handleMessage(msg)
             try{
-                Thread.sleep(5000)
+                Thread.sleep(3000)
                 Log.i("Servicio", msg?.obj.toString())
             }catch (e: InterruptedException){
                 Thread.currentThread().interrupt()
             }
             val intent = Intent(ServiciosActivity.BROADCASTNAME)
-            intent.putExtra("numero", msg?.obj as Int +1)
+            intent.putExtra("numero", msg?.obj as Int)
             LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(intent)
             stopSelf(msg.arg1)
         }

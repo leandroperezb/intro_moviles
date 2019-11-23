@@ -16,13 +16,13 @@ class MyIntentService : IntentService("MyIntentService") {
 
     override fun onHandleIntent(intent: Intent?) {
         try{
-            Thread.sleep(5000)
+            Thread.sleep(3000)
             Log.i("ServicioIntent", intent?.getIntExtra("contenido", 0).toString())
         }catch (e: InterruptedException){
             Thread.currentThread().interrupt()
         }
-        val intentNuevo = Intent(ServiciosActivity.BROADCASTNAME)
-        intentNuevo.putExtra("numero", intent!!.getIntExtra("contenido", 0) + 1)
+        val intentNuevo = Intent(ServiciosActivity.BROADCASTNAMEINTENT)
+        intentNuevo.putExtra("numero", intent!!.getIntExtra("contenido", 0))
         LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(intentNuevo)
     }
 

@@ -12,14 +12,20 @@ class ServiciosActivity : AppCompatActivity() {
 
     companion object {
         val BROADCASTNAME = "com.unicen.intro_moviles.RespuestaServicios"
+        val BROADCASTNAMEINTENT = "com.unicen.intro_moviles.RespuestaServiciosIntent"
     }
 
     inner class RespuestaServicios : BroadcastReceiver() {
 
         override fun onReceive(context: Context, intent: Intent) {
-            if (intent.action != null && intent.action!!.equals(BROADCASTNAME)){
-                val numeroEnString = intent.getIntExtra("numero", 0).toString()
-                resultado.text = resultado.text.toString() + " " + numeroEnString
+            if (intent.action != null){
+                if (intent.action!!.equals(BROADCASTNAME)) {
+                    val numeroEnString = intent.getIntExtra("numero", 0).toString()
+                    resultado.text = resultado.text.toString() + " " + numeroEnString
+                }else if (intent.action!!.equals(BROADCASTNAMEINTENT)){
+                    val numeroEnString = intent.getIntExtra("numero", 0).toString()
+                    resultadointent.text = resultadointent.text.toString() + " " + numeroEnString
+                }
             }
         }
     }
@@ -43,17 +49,18 @@ class ServiciosActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        LocalBroadcastManager.getInstance(applicationContext).registerReceiver(recibidor, IntentFilter(BROADCASTNAME))
+        LocalBroadcastManager.getInstance(applicationContext).registerReceiver(receptor, IntentFilter(BROADCASTNAME))
+        LocalBroadcastManager.getInstance(applicationContext).registerReceiver(receptor, IntentFilter(BROADCASTNAMEINTENT))
         bindService(Intent(this, MyBoundService::class.java), conexion, Context.BIND_AUTO_CREATE)
     }
 
     override fun onPause() {
         super.onPause()
-        LocalBroadcastManager.getInstance(applicationContext).unregisterReceiver(recibidor)
+        LocalBroadcastManager.getInstance(applicationContext).unregisterReceiver(receptor)
         unbindService(conexion)
     }
 
-    val recibidor = RespuestaServicios()
+    val receptor = RespuestaServicios()
 
     var background: Intent? = null
 
@@ -68,7 +75,7 @@ class ServiciosActivity : AppCompatActivity() {
     }
 
     fun intentService(view: View){
-        resultado.text = ""
+        resultadointent.text = ""
         val myIntentService = Intent(this, MyIntentService::class.java)
         for (i in 1..4) {
             myIntentService?.putExtra("contenido", i)
@@ -77,9 +84,9 @@ class ServiciosActivity : AppCompatActivity() {
     }
 
     fun boundService(view: View){
-        resultado.text = ""
+        resultadobound.text = ""
         if (miBoundService != null){
-            resultado.text = miBoundService!!.getNumber().toString()
+            resultadobound.text = miBoundService!!.getNumber().toString()
         }
     }
 

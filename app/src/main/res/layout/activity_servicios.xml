@@ -16,18 +16,26 @@
                 android:id="@+id/intentservice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:onClick="intentService" android:text="Intent Service"/>
+        <TextView
+                android:id="@+id/resultadointent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         <Button
                 android:id="@+id/backgroundservice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:onClick="backgroundService"
                 android:text="Background Service"/>
+        <TextView
+                android:id="@+id/resultado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:textSize="18sp"/>
         <Button
                 android:id="@+id/boundservice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:onClick="boundService" android:text="Bound Service"/>
         <TextView
-                android:id="@+id/resultado"
+                android:id="@+id/resultadobound"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:textSize="18sp"/>
+                android:layout_height="wrap_content"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
